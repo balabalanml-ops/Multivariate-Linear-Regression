@@ -5,35 +5,46 @@ To write a python program to implement multivariate linear regression and predic
 1.	Hardware – PCs
 2.	Anaconda – Python 3.7 Installation / Moodle-Code Runner
 ## Algorithm:
-### Step1
-<br>
-
+### step1
+import pandas as pd
 ### Step2
-<br>
-
+Read the csv file  
 ### Step3
-<br>
-
+Get the value of X and y variables 
 ### Step4
-<br>
-
+Create the linear regression model and fit.
 ### Step5
-<br>
-
+Predict the CO2 emission of a car where the weight is 2300kg, and the volume is 1300cm cube ## Program:
 ## Program:
 ```
-import pandas as pd
-from sklearn import linear_model
-df = pd.read_csv("carsemission.csv")
-X = df[['Weight', 'Volume']]
-y = df['CO2']
-regr = linear_model.LinearRegression()
-regr.fit(X, y)
-print('Coefficients:', regr.coef_)
-print('Intercept:', regr.intercept_)
-input_data = pd.DataFrame({'Weight': [3300], 'Volume': [1300]})
-predictedCO2 = regr.predict(input_data)
-print('Predicted CO2 for the corresponding weight and volume:', predictedCO2)
+
+
+import numpy as np
+
+# Example data
+Weight = np.array([790, 1160, 929, 865, 1140])
+Volume = np.array([1000, 1200, 900, 1100, 1300])
+CO2 = np.array([99, 95, 90, 97, 96])
+
+# Simple linear regression using least squares (basic idea)
+X = np.column_stack((Weight, Volume))
+X = np.c_[np.ones(X.shape[0]), X]  # add intercept
+
+# Compute coefficients using normal equation
+beta = np.linalg.inv(X.T @ X) @ X.T @ CO2
+
+print("Coefficients:", beta[1:])
+print("Intercept:", beta[0])
+
+# Prediction
+new = np.array([1, 3300, 1300])
+pred = new @ beta
+
+print("Predicted CO2:", pred)
+
+
+
+
 
 
 
@@ -48,11 +59,14 @@ print('Predicted CO2 for the corresponding weight and volume:', predictedCO2)
 
 ```
 ## Output:
+<img width="684" height="65" alt="image" src="https://github.com/user-attachments/assets/b5236c6e-e137-4d23-884c-a58e00e93e48" />
+
 
 
 ### Insert your output
 
-<br><img width="1423" height="537" alt="image" src="https://github.com/user-attachments/assets/12738368-3758-4290-9ab7-4d272e75e6f4" />
+<img width="927" height="972" alt="7 31 ex ml" src="https://github.com/user-attachments/assets/bb5dd68a-3bf0-4224-a31b-de54f49cf01f" />
+
 
 
 ## Result
